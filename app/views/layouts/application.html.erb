@@ -12,7 +12,11 @@
   <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <nav class="nav navbar-nav navbar-left">
-        <span>Nagano Cake</span>
+        <span>
+          <div>
+            <%= image_tag "logo.png", alt: "shop logo", id: "shop-logo", class: "image", width: "100px" %>
+          </div>
+        </span>
       </nav>
       <nav>
         <ul class="nav navbar-nav navbar-right">
@@ -29,6 +33,22 @@
             </li>
             <li>
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li>
+              <%= link_to '商品一覧', "#" %>
+            </li>
+            <li>
+              <%= link_to '会員一覧', "#" %>
+            </li>
+            <li>
+              <%= link_to '注文履歴一覧', "#" %>
+            </li>
+            <li>
+              <%= link_to 'ジャンル一覧', "#" %>
+            </li>
+            <li>
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
             </li>
           <% else %>
             <li>
