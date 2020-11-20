@@ -13,12 +13,13 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  namespace :admin do
-    resources :items # => /admin/items etc
+  namespace :admin do # => /admin/items etc
+    resources :items
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
-  scope module: :customers do
-    resources :items # => /items
+  scope module: :customers do # => /items
+    resources :items
   end
 
 end
