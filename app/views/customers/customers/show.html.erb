@@ -1,0 +1,52 @@
+<div class="container">
+  
+  <div class="row">
+    <h3 class"mypage">マイページ</h3>
+       <p><strong class="info">登録情報</strong>
+         <%= link_to "編集する", class: 'btn btn-primary col-xs-12' %>
+       </p>
+  </div>
+  
+  <div class="row">
+     <div class="mypage_info col-xs-6">
+       <table class="table table-bordered table-condensed">
+         <tr>
+           <td >氏名</td>
+           <td div class="col-xs-8"><%= @customer.full_name %></td>
+         </tr>
+         <tr>
+           <td>カナ</td>
+           <td><%= @customer.full_name_kana %></td>
+         </tr>
+         <tr>
+           <td>郵便番号</td>
+           <td><%= @customer.postal_code %></td>
+         </tr>
+         <tr>
+           <td>住所</td>
+           <td><%= @customer.address %></td>
+         </tr>
+         <tr>
+           <td>電話番号</td>
+           <td><%= @customer.phone_number %></td>
+         </tr>
+         <tr>
+           <td>メールアドレス</td>
+           <td><%= @customer.email %></td>
+         </tr>
+       </table>
+    </div>
+   </div>
+   
+  <div class="row">
+   <div class"mypage-btn">
+     <p><strong class="addresss-link">配送先</strong>
+      <%= link_to "一覧を見る", class: 'btn btn-primary' %>
+     </p>
+     <p><strong class="addresss-link">注文履歴</strong>
+      <%= link_to "一覧を見る", class: 'btn btn-primary' %>
+     </p>
+   </div>
+  </div>
+  
+</div>
