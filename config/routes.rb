@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do # => /admin/items etc
     resources :items
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
 
