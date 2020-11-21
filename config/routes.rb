@@ -24,8 +24,9 @@ Rails.application.routes.draw do
     resources :items # => /items
     resources :customers
    get "/customers/:id" => "customers#show"
-   get "/customers/:id/quit" => "customers#quit"
-   put "/cutomers/:id/out" => "customers#out", as: 'customers_out'
+   get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
+   put "/customers/:id/out" => "customers#out", as: 'customers_out'
+   get "/customers/:id/edit" => "customers#edit"
 
   end
 
