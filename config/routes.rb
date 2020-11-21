@@ -18,10 +18,11 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
   end
 
-  
+
   scope module: :customers do
     resources :items # => /items
     resources :customers
+    resources :addresses, except: [:new, :show]
    get "/customers/:id" => "customers#show"
    get "/customers/:id/quit" => "customers#quit"
    put "/cutomers/:id/out" => "customers#out", as: 'customers_out'
