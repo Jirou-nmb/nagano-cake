@@ -1,7 +1,8 @@
 <div class="body">
   <div class="container">
-    <h2>配送先</h2>
-    <%= form_with(model: @address, url: addresses_path(@address)) do |f| %>
+    <h2>配送先登録/一覧</h2>
+
+    <%= form_with model:@address, local: true do |f| %>
       <div class="field">
         <%= f.label :郵便番号（ハイフンなし） %>
         <br>
@@ -30,5 +31,39 @@
         <%= f.submit '登録する' %>
       </div>
     <% end %>
+    
+    <br>
+
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td>
+              <%= address.postal_code %>
+            </td>
+            <td>
+              <%= address.address %>
+            </td>
+            <td>
+              <%= address.name %>
+            </td>
+            <td>
+              <%= link_to "編集する", "addresses/#{address.id}/edit", class: "btn-sm btn-success" %>
+            </td>
+            <td>
+              <%= link_to "削除する", address, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   </div>
 </div>
