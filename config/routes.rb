@@ -19,10 +19,11 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
-  
+
   scope module: :customers do
     resources :items # => /items
     resources :customers
+    resources :addresses, except: [:new, :show]
    get "/customers/:id" => "customers#show"
    get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
    put "/customers/:id/out" => "customers#out", as: 'customers_out'

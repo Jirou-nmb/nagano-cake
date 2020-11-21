@@ -25,10 +25,10 @@ class Customers::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  
+
   before_action :reject_customer, only: [:create]
-  
-  
+
+
   protected
 
   def reject_customer
