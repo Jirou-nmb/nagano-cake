@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class-"row">
     <div class="col-md-2">
       <div class="list-group">
         <h4>ジャンル検索</h3>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="col-md-10">
-      <h3>商品一覧(全<%= @items.count %>件)</h3>
+      <h3><%= @genre.name  %>一覧(全<%= @items.count %>件)</h3>
       <div class="row">
         <div class="col-md-3">
           <% @items.each do |item| %>
@@ -20,7 +20,7 @@
             <% end %>
             <div class="list-group" style="list-style: none;">
               <li><%= item.name %></li>
-              <li>¥<%= (item.price * 1.1).round %></li>
+              <li><%= (item.price * 1.1).round %></li>
             </div>
           <% end %>
         </div>
