@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group">
+        <% @genres.each do |genre| %>
+        <li>
+          <%= link_to genre.name, items_path %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-5">
+          <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+        </div>
+        <div class="col-md-5">
+          
+          <p style= "font-size: 30px;"><%= @item.name %></p>
+          
+          <p><%= @item.introduction %></p>
+          
+          <p><strong>¥<%= @include_tax %></strong>(税込み)</p>
+          
+        </div>
+        
+        <div>
+          <%= form_with model: @cart_item, local: true do |f| %>
+        		<%= f.select :amount, (1..10), {include_blank: "個数選択"} %>
+        		<%= f.hidden_field :item_id, value: @item.id %>
+        		<%= f.hidden_field :customer_id, value: current_customer.id %>
+        		<%= f.submit "カートに入れる", class: 'btn btn-primary'%>
+      	  <% end %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

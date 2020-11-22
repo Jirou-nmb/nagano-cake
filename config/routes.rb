@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   
   scope module: :customers do
-    resources :items # => /items
+    resources :items, only: [:index, :show] 
     resources :customers
    get "/customers/:id" => "customers#show"
    get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
