@@ -25,7 +25,11 @@
                 <%= customer.email %>
               </td>
               <td>
-                ステータス
+                <% if customer.is_deleted == false %>
+                  <p>有効会員</p>
+                <% else %>
+                  <p>退会済み</p>
+                <% end %>
               </td>
             </tr>
           <% end %>
