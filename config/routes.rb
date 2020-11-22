@@ -21,14 +21,19 @@ Rails.application.routes.draw do
 
 
   scope module: :customers do
-    resources :items, only: [:index, :show] 
+    resources :items, only: [:index, :show] do
+      collection do
+        get :sort
+      end
+    end
     resources :customers
     resources :addresses, except: [:new, :show]
+    resources :cart_items, except: [:new, :show, :edit]
    get "/customers/:id" => "customers#show"
    get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
    put "/customers/:id/out" => "customers#out", as: 'customers_out'
    get "/customers/:id/edit" => "customers#edit"
-
+   
   end
 
 end
