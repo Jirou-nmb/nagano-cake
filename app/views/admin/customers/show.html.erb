@@ -8,7 +8,14 @@
         <tbody>
           <tr>
             <th>顧客ID</th>
-            <th><%= @customer.id %></th>
+            <th>
+              <%= @customer.id %>
+              <% if @customer.is_deleted == false %>
+                <p>有効会員</p>
+              <% else %>
+                <p>退会済み</p>
+              <% end %>
+            </th>
           </tr>
           <tr>
             <th>氏名</th>
