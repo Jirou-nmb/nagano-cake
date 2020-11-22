@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  has_many :cat_items
   attachment :image
   
   validates :genre_id, presence: true
