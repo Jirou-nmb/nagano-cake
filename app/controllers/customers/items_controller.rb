@@ -19,4 +19,9 @@ class Customers::ItemsController < Customers::ApplicationController
     @cart_item = CartItem.new
   end
   
+  private
+  def item_params
+      params.require(:item).permit(:genre_id, :name, :introduction, :price, :image_id, :is_active)
+  end
+  
 end
