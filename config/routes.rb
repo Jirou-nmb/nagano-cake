@@ -17,7 +17,18 @@ Rails.application.routes.draw do
     resources :items
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:index, :show, :update] do
+      collection do
+        get :today_index
+      end
+      member do
+        get :customer_index
+      end
+    end
+    
+    resources :order_details, only: [:update]
   end
+  
 
 
   scope module: :customers do
