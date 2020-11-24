@@ -24,10 +24,16 @@ Rails.application.routes.draw do
     resources :items # => /items
     resources :customers
     resources :addresses, except: [:new, :show]
-   get "/customers/:id" => "customers#show"
-   get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
-   put "/customers/:id/out" => "customers#out", as: 'customers_out'
-   get "/customers/:id/edit" => "customers#edit"
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
+    get "/customers/:id" => "customers#show"
+    get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
+    put "/customers/:id/out" => "customers#out", as: 'customers_out'
+    get "/customers/:id/edit" => "customers#edit"
 
   end
 

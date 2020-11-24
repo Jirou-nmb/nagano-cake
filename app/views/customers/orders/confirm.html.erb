@@ -1,0 +1,62 @@
+<div class="body">
+  <div class="container">
+    <h2>注文情報確認</h2>
+    <table class="table table-inverse">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込み）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            画像：いちごのショートケーキ
+          </td>
+          <td>
+            1,100
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            1,100
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-inverse">
+      <thead>
+        <tr>
+          <th>送料</th>
+          <th>商品合計</th>
+          <th>請求金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            800
+          </td>
+          <td>
+            1,760
+          </td>
+          <td>
+            2,560
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <h2>支払い方法</h2>
+      <%= @order.payment_method %>
+    <h2>お届け先</h2>
+      <%= @order.postal_code %>
+      <%= @order.address %>
+      <%= @order.name %>
+  </div>
+</div>
