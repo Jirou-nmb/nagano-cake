@@ -2,6 +2,19 @@
   <h3>商品編集画面</h3>
   <div class="row">
     <%= form_with model: [:admin, @item], local: true do |f| %>
+    
+    <!--エラー文-->
+    <% if @item.errors.any? %>
+      <div class="alert alert-warning">
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!--商品画像-->
     <div class="col-md-4">
       <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %><br>
       <%= f.attachment_field :image %>

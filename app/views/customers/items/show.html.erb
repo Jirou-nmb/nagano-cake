@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-2">
       <div class="list-group">
-        <h4>ジャンル検索</h3>
+        <h3>ジャンル検索</h3>
         <% @genres.each do |genre| %>
         <li style="font-size: 20px;">
           <%= link_to genre.name, sort_items_path(genre_id: genre.id) %>

@@ -9,6 +9,17 @@
     <div class="col-md-6">
       <%= form_with model:[:admin, @genre], local:true do |f| %>
       
+        <!--エラー文-->
+        <% if @genre.errors.any? %>
+          <div class="alert alert-warning">
+            <ul>
+              <% @genre.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      
         <%= f.label :name, "ジャンル" %>
         <%= f.text_field :name %>
         
