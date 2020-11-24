@@ -45,6 +45,11 @@ Rails.application.routes.draw do
    put "/customers/:id/out" => "customers#out", as: 'customers_out'
    get "/customers/:id/edit" => "customers#edit"
    
+   
+   resources :cart_items, only: [:create, :index, :destroy, :update]
+   delete 'cart_items' => 'cart_items#all_destroy', as: 'cart_all_destroy'
   end
+  
+    
 
 end
