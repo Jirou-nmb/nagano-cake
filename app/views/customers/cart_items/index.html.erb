@@ -12,20 +12,19 @@
         <th>小計</th>
         <th></th>
       </tr>
-     
-     <% total_price = 0 %>
-     <% @cart_items.each do |cart_item| %>
-     
+      
+      <% total_price = 0 %>
+      <% @cart_items.each do |cart_item| %>
+      
       <tr>
          <td>
-           	<%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
-           	<%= cart_item.item.name %>
+           <%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+           <%= cart_item.item.name %>
          </td>
          <td>
             <% tax_price = cart_item.item.price * 110 / 100 %>
             <%= tax_price.to_s(:delimited) %>円
          </td>
-     
          <td>
             <%= form_with model:cart_item, url: cart_item_path(cart_item), method: :patch, local: true do |f|%>
              <%= f.number_field :amount, min: 1 %>
@@ -46,7 +45,7 @@
     
     <table class="table table-bordered table-condensed">
       <tr>
-        合計
+        合計(税込)
       </tr>
       <td>
         <%= total_price.to_s(:delimited) %>円
