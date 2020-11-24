@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class-"row">
     <div class="col-md-2">
       <div class="list-group">
         <h3>ジャンル検索</h3>
@@ -11,22 +11,9 @@
       </div>
     </div>
     <div class="col-md-10">
+      <h3><%= @genre.name  %>一覧(全<%= @items.count %>件)</h3>
       <div class="row">
-        <div class="main-image">
-          <div class="main-text">
-            <p>
-              ようこそ、<strong>NaganoCakeへ！</strong><br>
-              このサイトは、ケーキ販売のECサイトになります。<br>
-              会員でない方も商品の閲覧はできますが、<br>
-              購入は<strong>会員登録</strong>が必要になります。<br>
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <h3><strong>オススメ商品</strong></h3>
-        <div class="row">
+        
           <% @items.each do |item| %>
             <div class="col-md-3">
               <%= link_to item_path(item) do %>
@@ -34,12 +21,10 @@
               <% end %>
               <div class="list-group" style="list-style: none;">
                 <li><%= item.name %></li>
-                <li>¥<%= (item.price * 1.1).round %></li>
+                <li><%= (item.price * 1.1).round %></li>
               </div>
             </div>
           <% end %>
-        </div>
-        <%= link_to "もっと見る", items_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>

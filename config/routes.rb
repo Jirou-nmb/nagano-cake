@@ -21,7 +21,11 @@ Rails.application.routes.draw do
 
 
   scope module: :customers do
-    resources :items # => /items
+    resources :items, only: [:index, :show] do
+      collection do
+        get :sort
+      end
+    end
     resources :customers
     resources :addresses, except: [:new, :show]
     resources :orders, only: [:new, :create, :index, :show] do
@@ -34,7 +38,12 @@ Rails.application.routes.draw do
     get "/customers/:id/quit" => "customers#quit", as: 'customers_quit'
     put "/customers/:id/out" => "customers#out", as: 'customers_out'
     get "/customers/:id/edit" => "customers#edit"
+    
+    resources :cart_items, only: [:create, :index, :destroy, :update]
+    delete 'cart_items' => 'cart_items#all_destroy', as: 'cart_all_destroy'
 
   end
+  
+    
 
 end
