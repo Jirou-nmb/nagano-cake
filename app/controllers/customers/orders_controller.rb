@@ -36,6 +36,7 @@ class Customers::OrdersController < Customers::ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
     redirect_to thanks_orders_path
 
