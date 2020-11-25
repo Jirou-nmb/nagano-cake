@@ -1,62 +1,84 @@
 <div class="body">
   <div class="container">
     <h2>注文情報確認</h2>
-    <table class="table table-inverse">
-      <thead>
-        <tr>
-          <th>商品名</th>
-          <th>単価（税込み）</th>
-          <th>数量</th>
-          <th>小計</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            画像：いちごのショートケーキ
-          </td>
-          <td>
-            1,100
-          </td>
-          <td>
-            1
-          </td>
-          <td>
-            1,100
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <table class="table table-inverse">
-      <thead>
-        <tr>
-          <th>送料</th>
-          <th>商品合計</th>
-          <th>請求金額</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            800
-          </td>
-          <td>
-            1,760
-          </td>
-          <td>
-            2,560
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <%= form_with(model: @order, url: orders_path, local: true) do |f| %>
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込み）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% total_price = 0 %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+              <%= cart_item.item.name %>
+            </td>
+            <td>
+              <% tax_price = cart_item.item.price * 110 / 100 %>
+              <%= tax_price.to_s(:delimited) %>
+            </td>
+            <td>
+              <%= cart_item.amount %>
+            </td>
+            <td>
+              <% sub_total_price = tax_price.to_i * cart_item.amount %>
+              <%= sub_total_price.to_s(:delimited) %>
+            </td>
+            <% total_price += sub_total_price %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <table class="table table-inverse">
+        <thead>
+          <tr>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>請求金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= @order.shipping_cost %>
+              <%= f.hidden_field :shipping_cost, value: @order.shipping_cost %>
+            </td>
+            <td>
+              <%= total_price.to_s(:delimited) %>
+            </td>
+            <td>
+              <% total_payment = total_price + @order.shipping_cost %>
+              <%= total_payment.to_s(:delimited) %>
+              <%= f.hidden_field :total_payment, value: total_payment %>
+            </td>
+          </tr>
 
-    <br>
+        </tbody>
+      </table>
 
-    <h2>支払い方法</h2>
-      <%= @order.payment_method %>
-    <h2>お届け先</h2>
-      <%= @order.postal_code %>
-      <%= @order.address %>
-      <%= @order.name %>
+      <br>
+
+      <h2>支払い方法</h2>
+        <%= @order.payment_method %>
+        <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      <h2>お届け先</h2>
+        <%= @order.postal_code %>
+        <%= f.hidden_field :postal_code, value: @order.postal_code %>
+        <%= @order.address %>
+        <%= f.hidden_field :address, value: @order.address %>
+        <%= @order.name %>
+        <%= f.hidden_field :name, value: @order.name %>
+        <br>
+        <br>
+        <br>
+        <br>
+        <%= f.submit "注文を確定する", class: "btn btn-sm btn-primary" %>
+    <% end %>
   </div>
 </div>

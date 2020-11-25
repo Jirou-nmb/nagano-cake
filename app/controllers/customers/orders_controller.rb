@@ -8,6 +8,8 @@ class Customers::OrdersController < Customers::ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items.all
+    @order.shipping_cost = 800
 
     if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
@@ -34,7 +36,9 @@ class Customers::OrdersController < Customers::ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @address = Address.new(address_params)
+    @order.save
+    redirect_to thanks_orders_path
+
   end
 
   def thanks
