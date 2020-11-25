@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     
     resources :order_details, only: [:update]
+    get "" => "home#top"
   end
   
 
