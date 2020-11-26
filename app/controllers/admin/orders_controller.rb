@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
   end
   
   def customer_index
-    @orders = Order.where()
+    @orders = Order.where(customer_id: params[:customer_id])
   end
   
   def show

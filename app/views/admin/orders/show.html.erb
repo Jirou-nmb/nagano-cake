@@ -2,12 +2,13 @@
   <div class="row">
     <h3>注文履歴詳細</h3>
     <div class="col-md-12">
-      <div class="row">購入者  <%= @order.name, admin_customer_path(@order.customer) %></div>
+      <div class="row">購入者  <%= link_to @order.name, admin_customer_path(@order.customer) %></div>
       <div class="row">配送先  〒<%= @order.postal_code + @order.address + @order.name %></div>
       <div class="row">支払い方法  <%= @order.payment_method %></div>
-      <div class="row">注文ステータス  
-        <%= form_with model: @order, admin_order_path(@order), local: true do |f| %>
-          <%= f.select :status, Order.status.keys %>
+      <div class="row">
+        注文ステータス  
+        <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
+          <%= f.select :status, Order.statuses.keys %>
           <%= f.submit '更新', class: 'btn btn-primary' %>
         <% end %>
       </div>
@@ -28,18 +29,18 @@
         </thead>
         <tbody>
           <% @order_details.each do |order_detail| %>
-          <tr>
-            <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.price %></td>
-            <td><%= order_detail.amount %></td>
-            <td><%= (order_detail.price * order_detail.amount) %></td>
-            <td>
-              <% form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
-                <%= f.select :making_status, OrderDetails.making_status.keys %>
-                <%= f.submit '更新', class: 'btn btn-primary' %>
-              <% end %>
-            </td>
-          </tr>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.price %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= (order_detail.price * order_detail.amount) %></td>
+              <td>
+                <% form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
+                  <%= f.select :making_status, OrderDetails.making_statuses.keys %>
+                  <%= f.submit '更新', class: 'btn btn-primary' %>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>

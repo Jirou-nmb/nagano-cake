@@ -16,7 +16,14 @@
           <tr>
             <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
             <td><%= order.name %></td>
-            <td><%= order.order_details.amount %></td>
+            <td>
+              <% order_details = OrderDetail.where(order_id:[order.id]) %>
+              <% count = 0 %>
+              <% order_details.each do |order_detail| %>
+                <% count += order_detail.amount %>
+              <% end %>
+              <%= count %>
+            </td>
             <td><%= order.status %></td>
           </tr>
           <% end %>
