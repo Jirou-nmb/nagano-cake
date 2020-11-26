@@ -35,7 +35,7 @@
               <td><%= order_detail.amount %></td>
               <td><%= (order_detail.price * order_detail.amount) %></td>
               <td>
-                <% form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
+                <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
                   <%= f.select :making_status, OrderDetail.making_statuses.keys %>
                   <%= f.submit '更新', class: 'btn btn-primary' %>
                 <% end %>
@@ -46,9 +46,11 @@
       </table>
     </div>
     <div class="col-md-4">
+      <br><br>
       <div class="row">商品合計  <%= @order.total_payment - @order.shipping_cost %>円</div>
       <div class="row">送料  <%= @order.shipping_cost %>円</div>
       <div class="row">請求金額合計  <%= @order.total_payment %>円</div>
     </div>
   </div>
+  <%= link_to '注文履歴一覧', admin_orders_path %>
 </div>
