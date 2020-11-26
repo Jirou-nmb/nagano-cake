@@ -8,6 +8,7 @@ class Customers::OrdersController < Customers::ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order_detail = OrderDetail.new
     @cart_items = current_customer.cart_items.all
     @order.shipping_cost = 800
 
@@ -36,7 +37,20 @@ class Customers::OrdersController < Customers::ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
+
+    current_customer.cart_items.all.each do |cart_item|
+      order_detail = OrderDetail.new
+      order_detail.order_id = @order.id
+      order_detail.item_id = cart_item.item.id
+      order_detail.amount = cart_item.amount
+      order_detail.price = cart_item.item.price * 110 / 100
+      order_detail.save
+    end
+
+    current_customer.cart_items.destroy_all
+
     redirect_to thanks_orders_path
 
   end
@@ -61,4 +75,5 @@ class Customers::OrdersController < Customers::ApplicationController
   def address_params
     params.require(:address).permit(:name, :postal_code, :address)
   end
+
 end

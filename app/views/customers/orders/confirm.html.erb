@@ -12,26 +12,27 @@
           </tr>
         </thead>
         <tbody>
+
           <% total_price = 0 %>
           <% @cart_items.each do |cart_item| %>
-          <tr>
-            <td>
-              <%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
-              <%= cart_item.item.name %>
-            </td>
-            <td>
-              <% tax_price = cart_item.item.price * 110 / 100 %>
-              <%= tax_price.to_s(:delimited) %>
-            </td>
-            <td>
-              <%= cart_item.amount %>
-            </td>
-            <td>
-              <% sub_total_price = tax_price.to_i * cart_item.amount %>
-              <%= sub_total_price.to_s(:delimited) %>
-            </td>
-            <% total_price += sub_total_price %>
-          </tr>
+            <tr>
+              <td>
+                <%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+                <%= cart_item.item.name %>
+              </td>
+              <td>
+                <% tax_price = cart_item.item.price * 110 / 100 %>
+                <%= tax_price.to_s(:delimited) %>
+              </td>
+              <td>
+                <%= cart_item.amount %>
+              </td>
+              <td>
+                <% sub_total_price = tax_price.to_i * cart_item.amount %>
+                <%= sub_total_price.to_s(:delimited) %>
+              </td>
+              <% total_price += sub_total_price %>
+            </tr>
           <% end %>
         </tbody>
       </table>
@@ -67,6 +68,7 @@
       <h2>支払い方法</h2>
         <%= @order.payment_method %>
         <%= f.hidden_field :payment_method, value: @order.payment_method %>
+
       <h2>お届け先</h2>
         <%= @order.postal_code %>
         <%= f.hidden_field :postal_code, value: @order.postal_code %>
