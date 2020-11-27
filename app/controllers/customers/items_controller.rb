@@ -2,7 +2,7 @@ class Customers::ItemsController < Customers::ApplicationController
   before_action :authenticate_customer!, only: [:show]
   
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(8)
     @genres = Genre.where(is_active: true)
   end
   
