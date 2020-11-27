@@ -46,3 +46,6 @@ private
   end
   
 end
+
+# cart_item_params[:amount]
+# params[:cart_item][:amout]
