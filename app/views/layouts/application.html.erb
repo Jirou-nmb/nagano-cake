@@ -9,12 +9,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header class="navbar navbar-fixed-top navbar-inverse">
+  <header class="navbar navbar-fixed-top navbar-default">
     <div class="container">
       <nav class="nav navbar-nav navbar-left">
         <span>
           <div>
-            <%= image_tag "logo.png", alt: "shop logo", id: "shop-logo", class: "image", width: "100px" %>
+
+            <%= link_to image_tag("logo.png"), root_path, alt: "shop logo", id: "shop-logo", class: "image", width: "80px" %>
           </div>
         </span>
       </nav>
@@ -22,6 +23,9 @@
         <ul class="nav navbar-nav navbar-right">
 
           <% if customer_signed_in? %>
+            <li class="navbar-text">
+              ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！
+            </li>
             <li>
               <%= link_to 'マイページ', customer_path(current_customer) %>
             </li>
