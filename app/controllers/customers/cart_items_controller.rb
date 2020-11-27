@@ -12,7 +12,7 @@ class Customers::CartItemsController < ApplicationController
           flash[:notice] = "New Item was successfully added to cart."
           redirect_to cart_items_path
     else
-          render 'customers/items/show'
+       redirect_to cart_items_path
     end
   end
   
@@ -46,3 +46,6 @@ private
   end
   
 end
+
+# cart_item_params[:amount]
+# params[:cart_item][:amout]
