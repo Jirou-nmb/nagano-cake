@@ -28,9 +28,9 @@
         <h3><strong>オススメ商品</strong></h3>
         <div class="row">
           <% @items.each do |item| %>
-            <div class="col-md-3">
+            <div class="col-sm-3">
               <%= link_to item_path(item) do %>
-                <%= attachment_image_tag item, :image, format: 'jpeg', width: "100%", height: "200px", fallback: "no_image.jpg" %>
+                <%= attachment_image_tag item, :image, format: 'jpeg', width: "100%", fallback: "no_image.jpg" %>
               <% end %>
               <div class="list-group" style="list-style: none;">
                 <li><%= item.name %></li>
