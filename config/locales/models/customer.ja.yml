@@ -7,7 +7,6 @@ ja:
         id: ID
         created_at: 登録日時
         updated_at: 更新日時
-        birthday: 生年月日
         email: メールアドレス
         password: パスワード
         last_name: 名前（性）

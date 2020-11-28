@@ -1,8 +1,11 @@
 <div class="body">
   <div class="container">
     <h2><%= @customer.full_name %>さんの会員情報編集</h2>
+    
+    
 
     <%= form_with(model: @customer, url: admin_customer_path(@customer)) do |f| %>
+
       <div class="form-group">
         <%= f.label :名前 %>
         <br>
