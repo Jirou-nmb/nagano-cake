@@ -2,6 +2,7 @@
    <h3>注文履歴一覧</h3>
  <div class="row">
   <table class="table table-bordered table-condensed">
+　
    <tr>
      <th>注文日</th>
      <th>配送先</th>
@@ -10,7 +11,7 @@
      <th>ステータス</th>
      <th>注文詳細</th>
    </tr>
-
+   
     <% @orders.each do |order| %>
      <tr>
        <td scope="row"><%= order.created_at.strftime('%Y/%m/%d') %></td>
@@ -31,7 +32,7 @@
           <%= order.status %>
         </td>
         <td scope="row">
-          <%= link_to "注文詳細", order_path(order), class: "btn btn-success" %>
+          <%= link_to "注文詳細", order_path(order), class: "glyphicon glyphicon-list-alt btn btn-success" %>
         </td>
       </tr>
     <% end %>
