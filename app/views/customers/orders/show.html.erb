@@ -1,9 +1,11 @@
-<h2>注文履歴詳細</h2>
+<div class="container">
+ <h2>注文履歴詳細</h2>
 
-<div calss="row">
+ <div class="col-xs-8">
   <strong>注文情報</strong>
 
 　　<table class="table table-bordered table-condensed">
+　　  <thead class="thead-light">
 　　    <tr>
           <th>注文日</th>
           <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -23,15 +25,18 @@
           <th>ステータス</th>
           <td><%= @order.status %></td>
         </tr>
+      </thead>
 　　</table>
-</div>
-
+  </div>
+ <div class="col-xs-3 col-xs-offset-1">
   <strong>請求情報</strong>
    
    <table class="table table-bordered table-condensed">
+     <thead class="thead-light">
        <tr>
          <th>商品合計</th>
-         <td>円</td>
+         <% total_price = @order.total_payment - @order.shipping_cost %>
+         <td><%= total_price.to_s(:delimited) %>円</td>
        </tr>
        <tr>
           <th>配送料</th>
@@ -41,24 +46,35 @@
           <th>ご請求金額</th>
           <td><%= @order.total_payment.to_s(:delimited) %>円</td>
        </tr>
+     </thead>
    </table>
-   
+   </div>
+  <div class="col-xs-7 order-details">
   <strong>注文内容</strong>
    
-   <table class="table table-bordered table-condensed">
+   <table class="table table-bordered mx-auto">
+     <thead class="thead-light">
       <tr>
-        <th>商品</th>
-        <th>単価(税込)</th>
-        <th>個数</th>
-        <th>小計</th>
+        <th scope="col">商品</th>
+        <th scope="col">単価(税込)</th>
+        <th scope="col">個数</th>
+        <th scope="col">小計</th>
       </tr>
-    
-    <% @order_details.each do |order_detail| %>
+      
+     <% @order_details.each do |order_detail| %>
       <tr>
-         <td><%= order_detail.item.name %></td>
-         <td>円</td>
-         <td><%= order_detail.amount %></td>
-         <td>円</td>
+         <td scope="row"><%= order_detail.item.name %></td>
+         
+         <% tax_price = order_detail.item.price * 110 / 100 %>
+         <td scope="row"><%= tax_price.to_s(:delimited) %>円</td>
+        
+         <td scope="row"><%= order_detail.amount %></td>
+         
+         <% sub_total_price = tax_price.to_i * order_detail.amount %>
+         <td scope="row"><%= sub_total_price.to_s(:delimited) %>円</td>
       </tr>
-    <% end %>
-   </table>
+     <% end %>
+     </thead>
+    </table>
+   </div>
+ </div>
