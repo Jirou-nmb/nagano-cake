@@ -1,8 +1,9 @@
 <div class="container">
+   <%= form_with(model:@customer, local: true, method: :put) do |f| %>
    
    <h3 class"edit">登録情報編集</h3>
      <div class="row">
-     <%= form_with(model:@customer, local: true, method: :put) do |f| %>
+     
        
        <div class="col-lg-2">
           <%= f.label :名前 %>
@@ -47,7 +48,7 @@
      </div>
      <div class="row"> 
 		   <div class="col-lg-10">
-		      <%= f.submit('編集内容を保存する', class: 'btn btn-primary center-block') %>
+		      <%= f.submit('編集内容を保存する', class: 'btn btn-primary center-block')%>
 		   </div>
 		 <% end %>
 		 </div>
