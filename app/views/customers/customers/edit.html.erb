@@ -1,43 +1,58 @@
 <div class="container">
-  
-  <div class="row">
-    <h3 class"edit">登録情報編集</h3>
-    
+   
+   <h3 class"edit">登録情報編集</h3>
+     <div class="row">
      <%= form_with(model:@customer, local: true, method: :put) do |f| %>
-      
-      <div class="field">
-        <%= f.label :名前 %>
-        (姓)<%= f.text_field :last_name, class: "last_name" %>
-        (名)<%= f.text_field :first_name, class: "first_name" %>
+       
+       <div class="col-lg-2">
+          <%= f.label :名前 %>
+       </div> 
+       <div class="col-lg-4">
+          (姓)<%= f.text_field :last_name, class: "last_name" %>
+          (名)<%= f.text_field :first_name, class: "first_name" %>
+       </div>
+     </div>
+     <div class="row">    
+       <div class="col-lg-2">
+         <%= f.label :フリガナ %>
+       </div>
+       <div class="col-lg-5">
+         (ｾｲ)<%= f.text_field :last_name_kana, class: "last_name_kana" %>
+         (ﾒｲ)<%= f.text_field :first_name_kana, class: "first_name_kana" %>
+       </div>
+     </div>
+     <div class="row">  
+       <div class="col-lg-2">
+          <%= f.label :メールアドレス %>
+       </div>
+       <div class="col-lg-5">
+          <%= f.text_field :email, class: "email" %>
       </div>
-      
-      <div class="field">
-        <%= f.label :フリガナ %>
-        (セイ)<%= f.text_field :last_name_kana, class: "last_name_kana" %>
-        (メイ)<%= f.text_field :first_name_kana, class: "first_name_kana" %>
+     </div>
+     <div class="row"> 
+       <div class="col-lg-2">
+          <%= f.label :住所 %>
+       </div>
+       <div class="col-lg-5">
+          <%= f.text_field :address, :size=>"50", class: "address" %>
+       </div>
+     </div>
+     <div class="row"> 
+       <div class="col-lg-2">
+          <%= f.label :電話番号 %>
+       </div> 
+       <div class="col-lg-2">
+          <%= f.text_field :phone_number, class: "phone_number" %>
       </div>
-      
-      <div class="field">
-        <%= f.label :メールアドレス %>
-              <%= f.text_field :email, class: "email" %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :住所 %>
-              <%= f.text_field :address, class: "address" %>
-      </div>
-      
-      <div class="field">
-        <%= f.label :電話番号 %>
-              <%= f.text_field :phone_number, class: "phone_number" %>
-      </div>
-      
-		  <div class="actions">
-		    <%= f.submit('編集内容を保存する', class: 'btn btn-primary') %>
-		  </div>
+     </div>
+     <div class="row"> 
+		   <div class="col-lg-10">
+		      <%= f.submit('編集内容を保存する', class: 'btn btn-primary center-block') %>
+		   </div>
 		 <% end %>
-		 
-		 <%= link_to "退会する", customers_quit_path, class: 'btn btn-danger' %>
-	
-  </div>
+		 </div>
+		 <div class="row"> 
+		      <%= link_to "退会する", customers_quit_path, class: 'btn btn-danger' %>
+	   </div>
+ 
 </div>

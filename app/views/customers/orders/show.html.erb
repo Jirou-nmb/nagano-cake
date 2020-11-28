@@ -1,11 +1,10 @@
 <div class="container">
- <h2>注文履歴詳細</h2>
+ <h3>注文履歴詳細</h3>
 
  <div class="col-xs-8">
   <strong>注文情報</strong>
 
 　　<table class="table table-bordered table-condensed">
-　　  <thead class="thead-light">
 　　    <tr>
           <th>注文日</th>
           <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -25,14 +24,12 @@
           <th>ステータス</th>
           <td><%= @order.status %></td>
         </tr>
-      </thead>
 　　</table>
   </div>
  <div class="col-xs-3 col-xs-offset-1">
   <strong>請求情報</strong>
    
    <table class="table table-bordered table-condensed">
-     <thead class="thead-light">
        <tr>
          <th>商品合計</th>
          <% total_price = @order.total_payment - @order.shipping_cost %>
@@ -46,14 +43,12 @@
           <th>ご請求金額</th>
           <td><%= @order.total_payment.to_s(:delimited) %>円</td>
        </tr>
-     </thead>
    </table>
    </div>
   <div class="col-xs-7 order-details">
   <strong>注文内容</strong>
    
    <table class="table table-bordered mx-auto">
-     <thead class="thead-light">
       <tr>
         <th scope="col">商品</th>
         <th scope="col">単価(税込)</th>
@@ -74,7 +69,6 @@
          <td scope="row"><%= sub_total_price.to_s(:delimited) %>円</td>
       </tr>
      <% end %>
-     </thead>
     </table>
    </div>
  </div>
