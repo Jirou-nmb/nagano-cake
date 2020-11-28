@@ -29,17 +29,18 @@
       <%= f.label :address, "新しいお届け先" %>
 
       <br>
-      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-      <%= text_field_tag 'address[postal_code]' %>
-      <br>
-
-      <%= f.label :address, "住所" %>
-      <%= text_field_tag 'address[address]' %>
-      <br>
-
-      <%= f.label :name, "宛名" %>
-      <%= text_field_tag 'address[name]' %>
-
+      <div class="form-group">
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+        <%= text_field_tag 'address[postal_code]' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address, "住所" %>
+        <%= text_field_tag 'address[address]' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "宛名" %>
+        <%= text_field_tag 'address[name]' %>
+      </div>
       <br>
 
       <%= f.submit "確認画面へ進む" , class:"btn btn-primary" %>

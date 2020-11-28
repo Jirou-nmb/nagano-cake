@@ -2,6 +2,18 @@
   <div class="container">
     <h2>配送先登録/一覧</h2>
 
+    <% if @address.errors.any? %>
+     <div id="error_explanation">
+       <h2>入力漏れがあります。</h2>
+
+       <ul>
+         <% @address.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+       </ul>
+     </div>
+    <% end %>
+
     <%= form_with model:@address, local: true do |f| %>
       <div class="field">
         <%= f.label :郵便番号（ハイフンなし） %>
