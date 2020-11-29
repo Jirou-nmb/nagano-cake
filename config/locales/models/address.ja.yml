@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      address: 住所
+    attributes:
+      address:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛名

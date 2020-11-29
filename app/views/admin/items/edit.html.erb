@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>商品編集画面</h2>
+  <div class="row">
+    <%= form_with model: [:admin, @item], local: true do |f| %>
+    
+    <!--エラー文-->
+    <% if @item.errors.any? %>
+      <div class="alert alert-warning">
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <!--商品画像-->
+    <div class="col-md-4">
+      <%= attachment_image_tag @item, :image, :fill, 300, 200, format: 'jpeg', fallback: "no_image.jpg" %><br>
+      <%= f.attachment_field :image %>
+    </div>
+    <div class="col-md-4">
+      <!--商品名-->
+      <div class="form-group">
+        <%= f.label :name, "商品名" %>
+        <%= f.text_field :name %><br>
+      </div>
+      <!--説明-->
+      <div class="form-group">
+        <%= f.label :introduction, "商品説明" %>
+        <%= f.text_area :introduction, rows: 5 %><br>
+      </div>
+      <!--ジャンル-->
+      <div class="form-group">
+        <%= f.label :genre_id, "ジャンル" %>
+        <%= f.select :genre_id, Genre.all.map{|t| [t.name, t.id]}, {include_blank: '--選択してください--'} %><br>
+      </div>
+      <!--税抜価格-->
+      <div class="form-group">
+        <%= f.label :price, "税抜価格" %>
+        <%= f.text_field :price %>円<br>
+      </div>
+      <!--販売ステータス-->
+      <div class="form-group">
+        <%= f.label :is_active, "販売ステータス" %>
+        <%= f.select :is_active, [['販売中', 'true'], ['販売停止中', 'false']] %>
+      </div>
+    </div>
+    <div class="col-md-2 offset-2">
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>

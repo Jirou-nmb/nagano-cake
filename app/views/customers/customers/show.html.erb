@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="row">
+    <h3 class"mypage">マイページ</h3>
+       <p><strong class="info">登録情報</strong>
+         <%= link_to "編集する", edit_customer_path, class: "glyphicon glyphicon-user btn btn-primary" %>
+       </p>
+  </div>
+
+  <div class="row">
+     <div class="mypage_info col-xs-6">
+       <table class="table table-bordered table-condensed">
+         <tr>
+           <th>氏名</th>
+           <td div class="col-xs-8"><%= @customer.full_name %></td>
+         </tr>
+         <tr>
+           <th>カナ</th>
+           <td><%= @customer.full_name_kana %></td>
+         </tr>
+         <tr>
+           <th>郵便番号</th>
+           <td><%= @customer.postal_code %></td>
+         </tr>
+         <tr>
+           <th>住所</th>
+           <td><%= @customer.address %></td>
+         </tr>
+         <tr>
+           <th>電話番号</th>
+           <td><%= @customer.phone_number %></td>
+         </tr>
+         <tr>
+           <th>メールアドレス</th>
+           <td><%= @customer.email %></td>
+         </tr>
+       </table>
+    </div>
+   </div>
+
+  <div class="row">
+   <div class"mypage-btn">
+     <p><strong class="addresss-link">配送先　</strong>
+      <%= link_to "一覧を見る", addresses_path, class: "glyphicon glyphicon-home btn btn-primary" %>
+     </p>
+     <p><strong class="addresss-link">注文履歴</strong>
+      <%= link_to "一覧を見る", orders_path(customer_id: @customer.id), class: "glyphicon glyphicon-gift btn btn-primary" %>
+     </p>
+   </div>
+  </div>
+
+</div>
